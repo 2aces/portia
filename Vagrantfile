@@ -10,7 +10,9 @@ Vagrant.configure("2") do |config|
 	config.vm.network "forwarded_port", guest: 9001, host: 9001
 	config.vm.provider "virtualbox" do |v|
 		v.memory = 2048
-		v.cpus = 2
+ 		v.cpus = 2
+		v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+		v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
 	end
 end
 
